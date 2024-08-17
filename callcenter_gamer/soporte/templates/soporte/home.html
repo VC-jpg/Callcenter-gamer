@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Centro de Preguntas y Respuestas</h1>
+    <a href="{% url 'hacer_pregunta' %}">Hacer una Pregunta</a>
+    <ul>
+        {% for pregunta in preguntas %}
+            <li>
+                <strong>{{ pregunta.titulo }}</strong> - {{ pregunta.contenido }}
+                {% for respuesta in pregunta.respuestas.all %}
+                    <ul>
+                        <li>{{ respuesta.contenido }}</li>
+                    </ul>
+                {% endfor %}
+                {% if user.is_staff %}
+                    <a href="{% url 'responder_pregunta' pregunta.id %}">Responder</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

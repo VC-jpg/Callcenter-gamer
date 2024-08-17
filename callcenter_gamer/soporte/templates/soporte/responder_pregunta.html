@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Responder Pregunta</title>
+</head>
+<body>
+    <h1>Responder Pregunta</h1>
+    <h2>{{ pregunta.titulo }}</h2>
+    <p>{{ pregunta.contenido }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
